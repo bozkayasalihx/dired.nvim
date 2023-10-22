@@ -23,6 +23,7 @@ M.BROKEN_LINK_TARGET = "DiredBrokenLinkTarget"
 M.MARKED_FILE = "DiredMarkedFile"
 M.COPY_FILE = "DiredCopyFile"
 M.MOVE_FILE = "DiredMoveFile"
+M.INFO = "DiredInfo"
 
 local function dec_to_hex(n, chars)
     chars = chars or 6
@@ -106,7 +107,8 @@ M.get_faded_highlight_group = function(hl_group_name, fade_percentage)
     end
 
     local normal = vim.api.nvim_get_hl_by_name("Normal", true)
-    if type(normal.foreground) ~= "number" then if vim.api.nvim_get_option("background") == "dark" then
+    if type(normal.foreground) ~= "number" then
+        if vim.api.nvim_get_option("background") == "dark" then
             normal.foreground = 0xffffff
         else
             normal.foreground = 0x000000
@@ -191,6 +193,7 @@ M.setup = function()
     create_highlight_group(M.MARKED_FILE, {}, nil, "a8b103", "bold")
     create_highlight_group(M.COPY_FILE, {}, nil, "ff8533", "bold")
     create_highlight_group(M.MOVE_FILE, {}, nil, "ff3399", "bold")
+    create_highlight_group(M.INFO, {}, nil, "a8b103")
 end
 
 return M

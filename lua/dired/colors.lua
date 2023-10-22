@@ -73,7 +73,7 @@ function M.get_filename_color(component)
             -- if file is suid
             return hl.FILE_SUID
         elseif
-            -- if file is executable
+        -- if file is executable
             ut.bitand(fs_t.mode, fs.fs_masks.S_IXUSR) > 0
             and ut.bitand(fs_t.mode, fs.fs_masks.S_IXGRP) > 0
             and ut.bitand(fs_t.mode, fs.fs_masks.S_IXOTH) > 0
@@ -119,13 +119,13 @@ function M.get_colored_component_str(component)
     local fcolor_p, fcolor_s = M.get_filename_color(component)
     local text_group = {
         nt(component.permissions, permcolor),
-        nt(component.nlinks, nlinkcolor),
+        -- nt(component.nlinks, nlinkcolor),
         nt(component.owner, ownercolor),
-        nt(component.group, groupcolor),
+        -- nt(component.group, groupcolor),
         nt(component.size, sizecolor),
         nt(component.month, monthcolor),
         nt(component.day, daycolor),
-        nt(component.ftime, ftimecolor),
+        -- nt(component.ftime, ftimecolor),
         -- nt(component.ficon, ftimecolor),
         nt(component.filename, fcolor_p),
     }
@@ -137,7 +137,7 @@ function M.get_colored_component_str(component)
     end
 
     local line = {}
-    local seperator = nt(" ")
+    local seperator = nt("  ");
     for i = 1, #text_group do
         table.insert(line, text_group[i])
         if i ~= #text_group then

@@ -6,6 +6,7 @@ local nui_line = require("nui.line")
 local nui_text = require("nui.text")
 local utils = require("dired.utils")
 local colors = require("dired.colors")
+local hl = require("dired.highlight")
 local M = {}
 
 -- fill the buffer with directory contents
@@ -50,6 +51,8 @@ function M.get_directory_listing(directory)
     local dir_size_str = utils.get_short_size(dir_size)
     local info1, info2 = nil, nil
 
+    local path_color = hl.INFO
+
     vim.g.dired_file_count = 0
     vim.g.dired_dir_count = 0
 
@@ -62,7 +65,7 @@ function M.get_directory_listing(directory)
     end
 
     if vim.g.dired_show_colors then
-        info1 = { nui_text(string.format("%s: \n\n", fs.get_simplified_path(directory))) }
+        info1 = { nui_text(string.format("%s ", fs.get_simplified_path(directory)), path_color) }
         info2 = { nui_text(string.format("total used in directory %s:", dir_size_str)) }
     else
         info1 = string.format("%s:", fs.get_simplified_path(directory))

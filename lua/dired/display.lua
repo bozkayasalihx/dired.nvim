@@ -62,7 +62,7 @@ function M.get_directory_listing(directory)
     end
 
     if vim.g.dired_show_colors then
-        info1 = { nui_text(string.format("%s:", fs.get_simplified_path(directory))) }
+        info1 = { nui_text(string.format("%s: \n\n", fs.get_simplified_path(directory))) }
         info2 = { nui_text(string.format("total used in directory %s:", dir_size_str)) }
     else
         info1 = string.format("%s:", fs.get_simplified_path(directory))
